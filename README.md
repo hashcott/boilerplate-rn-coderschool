@@ -4,8 +4,7 @@ Simple boilerplate React Native APP for coderschool
 #Contents
 The boilerplate contains:
 
-`
-    "@react-native-community/masked-view": "^0.1.10",
+`"@react-native-community/masked-view": "^0.1.10",
     
     "@react-navigation/bottom-tabs": "^5.7.2",
     
