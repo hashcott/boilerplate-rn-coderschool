@@ -1,4 +1,5 @@
 # IF IT HELPFUL FOR YOU, PLEASE STAR REPO THANK :3
+
 ![PLEASE](https://media.giphy.com/media/3oxHQfvDzo7VhSRy8M/giphy.gif)
 
 # React Native Boilerplate for CoderSchool
@@ -10,7 +11,7 @@ Simple react-native boilerplate for mobile development.
 1. Ensure you've followed the [React Native - Get Started Guide](https://facebook.github.io/react-native/docs/getting-started.html)
 1. Clone this project `git clone https://github.com/2ksoft/boilerplate-rn-coderschool.git`
 1. Run `npm install` from root directory
-1. Start the app in [an emulator](/docs/quick-tips.md#running-in-an-emulator)
+1. Start the app in [IOS](https://docs.expo.io/workflow/ios-simulator/) - [Android](https://docs.expo.io/workflow/android-studio-emulator/)
 
 ## Stack
 

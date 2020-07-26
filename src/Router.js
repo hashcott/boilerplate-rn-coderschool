@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import Home from "./src/Screen/Home";
+import Home from "./containers/Home";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();

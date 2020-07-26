@@ -1,4 +1,4 @@
-import { EXAMPLE } from "../type";
+import { EXAMPLE } from "../actions/type";
 
 export default (state = [], action) => {
   switch (action.key) {
