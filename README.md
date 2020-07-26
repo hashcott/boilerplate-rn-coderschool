@@ -1,3 +1,6 @@
+#IF IT HELPFUL FOR YOU, PLEASE STAR REPO THANK :3
+![PLEASE](https://media.giphy.com/media/3oxHQfvDzo7VhSRy8M/giphy.gif)
+
 # React Native Boilerplate for CoderSchool
 
 Simple react-native boilerplate for mobile development.
