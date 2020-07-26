@@ -1,41 +1,33 @@
-# boilerplate-rn-coderschool
-Simple boilerplate React Native APP for coderschool
+# React Native Boilerplate for CoderSchool
 
-#Contents
-The boilerplate contains:
+Simple react-native boilerplate for mobile development.
 
-`"@react-native-community/masked-view": "^0.1.10",
-    
-    "@react-navigation/bottom-tabs": "^5.7.2",
-    
-    "@react-navigation/native": "^5.7.1",
-    
-    "axios": "^0.19.2",
-    
-    "expo": "~38.0.8",
-    
-    "expo-status-bar": "^1.0.2",
-    
-    "react": "~16.11.0",
-    
-    "react-dom": "~16.11.0",
-    
-    "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
-    
-    "react-native-gesture-handler": "^1.6.1",
-    
-    "react-native-reanimated": "^1.9.0",
-    
-    "react-native-safe-area-context": "^3.0.7",
-    
-    "react-native-screens": "^2.9.0",
-    
-    "react-native-web": "~0.11.7",
-    
-    "react-redux": "^7.2.0",
-    
-    "redux": "^4.0.5",
-    
-    "redux-thunk": "^2.3.0"
-    
-`
+## Getting Started
+
+1. Ensure you've followed the [React Native - Get Started Guide](https://facebook.github.io/react-native/docs/getting-started.html)
+1. Clone this project `git clone https://github.com/2ksoft/boilerplate-rn-coderschool.git`
+1. Run `npm install` from root directory
+1. Start the app in [an emulator](/docs/quick-tips.md#running-in-an-emulator)
+
+## Stack
+
+- [React Native](https://facebook.github.io/react-native/) for building mobile apps using Javascript
+- [Redux](http://rackt.github.io/redux/index.html) a predictable state container for Javascript apps
+- [Redux Thunk](https://github.com/gaearon/redux-thunk) middleware for Redux
+- [Babel](http://babeljs.io/) for ES6+ support
+- [React Navigation](https://github.com/react-community/react-navigation) navigation for React Native
+
+## File Structure
+
+- `/src` - Contains our React Native App codebase
+  - `/actions` - Action Types and Action Creators
+  - `/assets` - Images, Fonts and others
+  - `/components` - Dumb components
+    - `/common` - Shared components
+  - `/config` - Config files
+  - `/containers` - Smart components
+  - `/reducers` - Reducers
+  - `/utils` - Helpers
+  - `/App.js` - Base component
+  - `/Router.js` - App navigation
+  - `/Store.js` - Store
