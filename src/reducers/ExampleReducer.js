@@ -1,7 +1,7 @@
 import { EXAMPLE } from "../actions/type";
 
 export default (state = [], action) => {
-  switch (action.key) {
+  switch (action.type) {
     case EXAMPLE:
       return [...state, action.payload];
 
