@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Alert,
   StyleSheet,
@@ -8,87 +8,92 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Agenda } from "react-native-calendars";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, EvilIcons, Octicons } from "@expo/vector-icons";
 
 const dummy = require("../apis/dummy.json");
+const testIDs = require("./testIDs");
 
-export default class AgendaScreen extends Component {
-  componentDidMount() {
-    this.setState({ items: dummy.timeTable });
-  }
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: {},
-    };
-  }
-
-  render() {
-    return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <Agenda
-          items={this.state.items}
-          // loadItemsForMonth={this.loadItems.bind(this)}
-          selected={this.timeToString(new Date().getTime())}
-          renderItem={this.renderItem.bind(this)}
-          renderEmptyDate={this.renderEmptyDate.bind(this)}
-          rowHasChanged={this.rowHasChanged.bind(this)}
-        />
-      </SafeAreaView>
-    );
-  }
-
-  renderItem(item) {
+export default function AgendaScreen() {
+  const [items, setItems] = useState({});
+  const loadItems = (day) => {
+    setTimeout(() => {
+      for (let i = -10; i < 30; i++) {
+        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+        const strTime = timeToString(time);
+        if (!items[strTime]) {
+          items[strTime] = dummy.timeTable[strTime];
+        }
+      }
+      const newItems = {};
+      Object.keys(items).forEach((key) => {
+        newItems[key] = items[key];
+      });
+      setItems(newItems);
+    }, 2000);
+  };
+  const renderItem = (item) => {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() => Alert.alert(item.lopHocPhan)}
+        onPress={() =>
+          Alert.alert("Đi học để xây dựng quê hương đất nước nhé ! :)))")
+        }
       >
         <View style={styles.title}>
           <Text style={{ fontWeight: "bold" }}>{item.lopHocPhan}</Text>
-          <Text
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingVertical: 10,
-            }}
-          >
+          <Text style={styles.content}>
             <AntDesign name="clockcircleo" size={18} color="black" />{" "}
-            {this.parsePeriods(item.timestamp.start)} -{" "}
-            {this.parsePeriods(item.timestamp.end)}
+            {parsePeriods(item.timestamp.start)} -{" "}
+            {parsePeriods(item.timestamp.end)}
           </Text>
-          <Text>{item.location}</Text>
-          <Text>{item.giangVien}</Text>
-          <Text>Số tín chỉ : {item.soTc}</Text>
+          <Text style={styles.content}>
+            <EvilIcons name="location" size={18} color="black" />{" "}
+            {item.location}
+          </Text>
+          <Text style={styles.content}>
+            <Octicons name="person" size={18} color="black" /> {item.giangVien}
+          </Text>
+          <Text style={styles.content}>Số tín chỉ : {item.soTc}</Text>
         </View>
       </TouchableOpacity>
     );
-  }
-
-  renderEmptyDate() {
+  };
+  const renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
         <Text>Bạn chưa có lịch học vào hôm nay</Text>
       </View>
     );
-  }
+  };
 
-  rowHasChanged(r1, r2) {
+  const rowHasChanged = (r1, r2) => {
     return r1.name !== r2.name;
-  }
+  };
 
-  timeToString(time) {
+  const timeToString = (time) => {
     const date = new Date(time);
     return date.toISOString().split("T")[0];
-  }
-  parsePeriods(time) {
+  };
+  const parsePeriods = (time) => {
     const date = new Date(time);
     return `${date.getHours()}:${date.getMinutes()}`;
-  }
-}
+  };
 
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <Agenda
+        items={items}
+        loadItemsForMonth={loadItems}
+        selected={timeToString(new Date().getTime())}
+        renderItem={renderItem}
+        renderEmptyDate={renderEmptyDate}
+        rowHasChanged={rowHasChanged}
+        // pastScrollRange={10}
+        // futureScrollRange={10}
+      />
+    </SafeAreaView>
+  );
+}
 const styles = StyleSheet.create({
   item: {
     backgroundColor: "white",
@@ -106,6 +111,13 @@ const styles = StyleSheet.create({
   },
   title: {
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 10,
   },
 });

@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { MaterialIcons } from "@expo/vector-icons";
-
 import Home from "./containers/Home";
 
 const Tab = createBottomTabNavigator();
