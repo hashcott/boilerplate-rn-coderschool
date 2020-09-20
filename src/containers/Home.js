@@ -11,9 +11,8 @@ import { Agenda } from "react-native-calendars";
 import { AntDesign, EvilIcons, Octicons } from "@expo/vector-icons";
 
 const dummy = require("../apis/dummy.json");
-const testIDs = require("./testIDs");
 
-export default function AgendaScreen() {
+export default function Schedule() {
   const [items, setItems] = useState({});
   const loadItems = (day) => {
     setTimeout(() => {
@@ -21,7 +20,9 @@ export default function AgendaScreen() {
         const time = day.timestamp + i * 24 * 60 * 60 * 1000;
         const strTime = timeToString(time);
         if (!items[strTime]) {
-          items[strTime] = dummy.timeTable[strTime];
+          items[strTime] = dummy.timeTable[strTime]
+            ? dummy.timeTable[strTime]
+            : [];
         }
       }
       const newItems = {};
@@ -40,7 +41,9 @@ export default function AgendaScreen() {
         }
       >
         <View style={styles.title}>
-          <Text style={{ fontWeight: "bold" }}>{item.lopHocPhan}</Text>
+          <Text numberOfLines={1} style={{ fontWeight: "bold" }}>
+            {item.lopHocPhan}
+          </Text>
           <Text style={styles.content}>
             <AntDesign name="clockcircleo" size={18} color="black" />{" "}
             {parsePeriods(item.timestamp.start)} -{" "}
@@ -61,7 +64,7 @@ export default function AgendaScreen() {
   const renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
-        <Text>Bạn chưa có lịch học vào hôm nay</Text>
+        <Text>Xếp lịch mà đi chơi !</Text>
       </View>
     );
   };
@@ -81,16 +84,18 @@ export default function AgendaScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Agenda
-        items={items}
-        loadItemsForMonth={loadItems}
-        selected={timeToString(new Date().getTime())}
-        renderItem={renderItem}
-        renderEmptyDate={renderEmptyDate}
-        rowHasChanged={rowHasChanged}
-        // pastScrollRange={10}
-        // futureScrollRange={10}
-      />
+      <View style={{ flex: 1 }}>
+        <Agenda
+          items={items}
+          loadItemsForMonth={loadItems}
+          selected={timeToString(new Date().getTime())}
+          renderItem={renderItem}
+          renderEmptyDate={renderEmptyDate}
+          rowHasChanged={rowHasChanged}
+          // pastScrollRange={10}
+          // futureScrollRange={10}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -103,11 +108,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     marginTop: 17,
     height: 150,
+    justifyContent: "space-evenly",
   },
   emptyDate: {
     height: 15,
     flex: 1,
-    paddingTop: 30,
+    padding: 30,
+    justifyContent: "center",
   },
   title: {
     flexDirection: "column",
@@ -115,9 +122,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   content: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 10,
+    paddingTop: 5,
   },
 });
